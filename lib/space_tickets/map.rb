@@ -7,14 +7,17 @@ module SpaceTickets
 
       @sectors = []
       id = 0
-      3.times do |y=-1|
-        3.times do |x=-1|
+      x = -1
+      y = -1
+      3.times do #|y=-1|
+        3.times do #|x=-1|
           sector = Sector.new(window,x,y,id)
           @sectors << sector
           id += 1
           x += 1
         end
         y +=1
+        x = -1
       end
     end
 
