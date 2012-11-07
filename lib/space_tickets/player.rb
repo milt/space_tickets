@@ -3,8 +3,8 @@ module SpaceTickets
     def initialize(window)
       @image = Gosu::Image.new(window, "media/player.png", false)
       @x = @y = @vel_x = @vel_y = @angle = 0.0
-      @x_clamp = window.height
-      @y_clamp = window.width
+      @x_clamp = window.width
+      @y_clamp = window.height
     end
 
     def warp(x, y)
