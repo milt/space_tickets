@@ -5,12 +5,13 @@ module SpaceTickets
       super prefs.window_x, prefs.window_y, false
       self.caption = "Space Tickets"
 
+      @map = Map.new(self)
+      @current_sector = @map.sectors.detect {|s| s.id == prefs.start_sector}
+
       @background_image = Gosu::Image.new(self, "media/bk.png", true)
 
       @player = Player.new(self)
       @player.warp(prefs.window_x/2, prefs.window_x/2)
-
-      @clientfactory = ClientFactory.new(self)
     end
     
     def update
@@ -24,11 +25,11 @@ module SpaceTickets
         @player.accelerate
       end
       @player.move
-      @clientfactory.drift
+      @map.update
     end
     
     def draw
-      @clientfactory.draw
+      @map.draw(@current_sector)
 
       @player.draw
 

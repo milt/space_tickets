@@ -6,3 +6,6 @@ paths:
 display:
   window_x: 800
   window_y: 600
+
+default:
+  sector: 4

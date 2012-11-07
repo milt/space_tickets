@@ -1,8 +1,10 @@
 module SpaceTickets
   class Client
-    def initialize(window)
+    attr_reader :x, :y, :sector
+    def initialize(window, sector)
       @image = Gosu::Image.new(window, "media/client.png", false)
       @x = @y = @vel_x = @vel_y = @angle = @vel_rot = 0.0
+      @sector = sector
     end
 
     def turn(rot,vel)

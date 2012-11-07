@@ -8,6 +8,8 @@ module SpaceTickets
   require 'space_tickets/game_window'
   require 'space_tickets/client'
   require 'space_tickets/client_factory'
+  require 'space_tickets/map'
+  require 'space_tickets/sector'
   class SpaceTicketsGame
     def initialize
       window = GameWindow.new
