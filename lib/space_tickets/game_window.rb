@@ -8,6 +8,8 @@ module SpaceTickets
 
       @player = Player.new(self)
       @player.warp(400, 300)
+
+      @clientfactory = ClientFactory.new(self)
     end
     
     def update
@@ -21,10 +23,14 @@ module SpaceTickets
         @player.accelerate
       end
       @player.move
+      @clientfactory.drift
     end
     
     def draw
+      @clientfactory.draw
+
       @player.draw
+
       @background_image.draw(0, 0, 0)
     end
 
