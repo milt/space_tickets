@@ -1,10 +1,13 @@
 # space_tickets.rb
 module SpaceTickets
   require 'gosu'
-  require_relative './space_tickets/player'
-  require_relative './space_tickets/game_window'
-  require_relative './space_tickets/client'
-  require_relative './space_tickets/client_factory'
+  require 'yaml'
+  $LOAD_PATH.unshift(File.dirname(__FILE__))
+  require 'space_tickets/preferences'
+  require 'space_tickets/player'
+  require 'space_tickets/game_window'
+  require 'space_tickets/client'
+  require 'space_tickets/client_factory'
   class SpaceTicketsGame
     def initialize
       window = GameWindow.new

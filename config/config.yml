@@ -1,0 +1,8 @@
+# Prefs for Space Tickets
+
+paths:
+  media: media/
+
+display:
+  window_x: 800
+  window_y: 600

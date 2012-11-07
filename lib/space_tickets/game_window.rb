@@ -1,13 +1,14 @@
 module SpaceTickets
   class GameWindow < Gosu::Window
     def initialize
-      super 800, 600, false
+      prefs = Preferences.new
+      super prefs.window_x, prefs.window_y, false
       self.caption = "Space Tickets"
 
       @background_image = Gosu::Image.new(self, "media/bk.png", true)
 
       @player = Player.new(self)
-      @player.warp(400, 300)
+      @player.warp(prefs.window_x/2, prefs.window_x/2)
 
       @clientfactory = ClientFactory.new(self)
     end
