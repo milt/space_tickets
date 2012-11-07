@@ -6,7 +6,7 @@ module SpaceTickets
       10.times do
         client = Client.new(window)
         client.warp(rand(window.width),rand(window.height))
-        client.turn(rand(360),rand(-2..2))
+        client.turn(rand(360),rand(-1.0..1.0))
         @clients << client
       end
     end
