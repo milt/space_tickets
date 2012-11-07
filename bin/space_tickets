@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require_relative '../lib/space_tickets'
+
+game = SpaceTickets::SpaceTicketsGame.new
