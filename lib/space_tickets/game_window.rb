@@ -6,7 +6,6 @@ module SpaceTickets
       self.caption = "Space Tickets"
 
       @map = Map.new(self)
-      @current_sector = @map.sectors.detect {|s| s.id == prefs.start_sector}
 
       @background_image = Gosu::Image.new(self, "media/bk.png", true)
 
@@ -25,11 +24,15 @@ module SpaceTickets
         @player.accelerate
       end
       @player.move
+      unless @player.moved.nil?
+        @map.shift(@player.moved)
+        @player.moved = nil
+      end
       @map.update
     end
     
     def draw
-      @map.draw(@current_sector)
+      @map.draw
 
       @player.draw
 

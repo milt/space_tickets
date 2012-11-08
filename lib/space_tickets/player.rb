@@ -1,10 +1,12 @@
 module SpaceTickets
   class Player
+    attr_accessor :moved
     def initialize(window)
       @image = Gosu::Image.new(window, "media/player.png", false)
       @x = @y = @vel_x = @vel_y = @angle = 0.0
       @x_clamp = window.width
       @y_clamp = window.height
+      @moved = nil
     end
 
     def warp(x, y)
@@ -27,6 +29,20 @@ module SpaceTickets
     def move
       @x += @vel_x
       @y += @vel_y
+
+      case
+      when @x > @x_clamp
+        @moved = :right
+      when @x < 0
+        @moved = :left
+      when @y > @y_clamp
+        @moved = :down
+      when @y < 0
+        @moved = :up
+      else
+        @moved = nil
+      end 
+
       @x %= @x_clamp
       @y %= @y_clamp
       
