@@ -10,6 +10,7 @@ module SpaceTickets
   require 'space_tickets/client_factory'
   require 'space_tickets/map'
   require 'space_tickets/sector'
+  require 'space_tickets/user_interface'
   class SpaceTicketsGame
     def initialize
       window = GameWindow.new

@@ -11,6 +11,8 @@ module SpaceTickets
 
       @player = Player.new(self)
       @player.warp(prefs.window_x/2, prefs.window_x/2)
+
+      @ui = UserInterface.new(self)
     end
     
     def update
@@ -26,11 +28,11 @@ module SpaceTickets
       @player.move
 
       unless @player.moved.nil?
-        foo = @map.shift(@player.moved)
-        if foo.nil?
+        shift = @map.shift(@player.moved)
+        if shift.nil?
           @player.bounce
         end
-        @player.moved = nil
+        @ui.sector_text = "Sector #{@map.current_sector.id.to_s}"
       end
       
       @map.update
@@ -40,8 +42,8 @@ module SpaceTickets
       @map.draw
 
       @player.draw
-
       @background_image.draw(0, 0, 0)
+      @ui.draw
     end
 
     def button_down(id)
