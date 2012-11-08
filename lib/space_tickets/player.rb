@@ -58,8 +58,8 @@ module SpaceTickets
     end
 
     def bounce
-      @vel_x = 0 - @vel_x
-      @vel_y = 0 - @vel_y
+      @vel_x = (0 - @vel_x)*2
+      @vel_y = (0 - @vel_y)*2
       @bouncing = true
     end
 
