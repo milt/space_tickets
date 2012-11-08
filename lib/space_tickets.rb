@@ -1,6 +1,7 @@
 # space_tickets.rb
 module SpaceTickets
   require 'gosu'
+  require 'texplay'
   require 'yaml'
   $LOAD_PATH.unshift(File.dirname(__FILE__))
   require 'space_tickets/preferences'
