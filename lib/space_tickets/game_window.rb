@@ -32,7 +32,7 @@ module SpaceTickets
         if shift.nil?
           @player.bounce
         end
-        @ui.sector_text = "Sector #{@map.current_sector.id.to_s}"
+        @ui.set_sector(@map.current_sector)
       end
       
       @map.update
