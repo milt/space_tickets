@@ -7,6 +7,7 @@ module SpaceTickets
       @x_clamp = window.width
       @y_clamp = window.height
       @moved = nil
+      @bouncing = false
     end
 
     def warp(x, y)
@@ -30,24 +31,36 @@ module SpaceTickets
       @x += @vel_x
       @y += @vel_y
 
-      case
-      when @x > @x_clamp
-        @moved = :right
-      when @x < 0
-        @moved = :left
-      when @y > @y_clamp
-        @moved = :down
-      when @y < 0
-        @moved = :up
+      if @bouncing == false
+        @moved = case
+        when @x > @x_clamp
+          :right
+        when @x < 0
+          :left
+        when @y > @y_clamp
+          :down
+        when @y < 0
+          :up
+        else
+          nil
+        end
       else
         @moved = nil
-      end 
-
+        @bouncing = false
+      end
+      
       @x %= @x_clamp
       @y %= @y_clamp
+
       
       @vel_x *= 0.95
       @vel_y *= 0.95
+    end
+
+    def bounce
+      @vel_x = 0 - @vel_x
+      @vel_y = 0 - @vel_y
+      @bouncing = true
     end
 
     def draw

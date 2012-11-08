@@ -24,10 +24,15 @@ module SpaceTickets
         @player.accelerate
       end
       @player.move
+
       unless @player.moved.nil?
-        @map.shift(@player.moved)
+        foo = @map.shift(@player.moved)
+        if foo.nil?
+          @player.bounce
+        end
         @player.moved = nil
       end
+      
       @map.update
     end
     
