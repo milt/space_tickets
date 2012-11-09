@@ -1,3 +1,5 @@
 = Space Tickets
 
 Is a game of deep space IT support.
+
+It uses Gosu and Texplay.
