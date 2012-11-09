@@ -1,19 +1,16 @@
 module SpaceTickets
   class UserInterface
     def initialize(window)
-      @sector_font = Gosu::Font.new(window, "media/visitor1.ttf", 32)
-      @sector_text = "Sector 4"
-      @sector_color = Gosu::Color::YELLOW
-
+      @sector_font = SectorFont.new(window)
       @hud = HUD.new(window)
     end
 
     def set_sector(sector)
-      @sector_text = "Sector #{sector.id.to_s}"
+      @sector_font.text = "Sector #{sector.id.to_s}"
     end
 
     def draw
-      @sector_font.draw(@sector_text, 10, 10, 3, 1, 1, @sector_color, :default)
+      @sector_font.display
       @hud.draw(0,0,3)
     end
   end
