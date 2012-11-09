@@ -9,7 +9,7 @@ module SpaceTickets
       @player = Player.new(window)
       @player.warp(window.width/2, window.height/2)
 
-      @ui = UserInterface.new(window)
+      @ui = UserInterface.new(window, @map.current_sector)
     end
 
     def update
