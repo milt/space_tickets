@@ -1,12 +1,12 @@
 module SpaceTickets
   class Player
-    attr_accessor :moved
+    attr_accessor :shifted
     def initialize(window)
       @image = Gosu::Image.new(window, "media/player.png", false)
       @x = @y = @vel_x = @vel_y = @angle = 0.0
       @x_clamp = window.width
       @y_clamp = window.height
-      @moved = nil
+      @shifted = nil
       @bouncing = false
     end
 
@@ -32,7 +32,7 @@ module SpaceTickets
       @y += @vel_y
 
       if @bouncing == false
-        @moved = case
+        @shifted = case
         when @x > @x_clamp
           :right
         when @x < 0
@@ -45,7 +45,7 @@ module SpaceTickets
           nil
         end
       else
-        @moved = nil
+        @shifted = nil
         @bouncing = false
       end
       

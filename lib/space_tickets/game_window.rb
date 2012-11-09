@@ -27,8 +27,8 @@ module SpaceTickets
       end
       @player.move
 
-      unless @player.moved.nil?
-        shift = @map.shift(@player.moved)
+      unless @player.shifted.nil?
+        shift = @map.shift(@player.shifted)
         if shift.nil?
           @player.bounce
         end

@@ -5,22 +5,7 @@ module SpaceTickets
 
     def initialize(window)
       @width, @height = window.width*3, window.height*3
-
-      @sectors = []
-      id = 0
-      x = -1
-      y = -1
-      3.times do
-        3.times do
-          sector = Sector.new(window,x,y,id)
-          @sectors << sector
-          id += 1
-          x += 1
-        end
-        y +=1
-        x = -1
-      end
-
+      generate_sectors(window)
       @current_sector = @sectors.detect {|s| s.id == 4}
     end
 
@@ -29,15 +14,18 @@ module SpaceTickets
     end
     
     def shift(direction)
+      x = @current_sector.x_coord
+      y = @current_sector.y_coord
+
       new_sector = case direction
       when :up
-        find_sector_by_coords(@current_sector.x_coord, (@current_sector.y_coord - 1))
+        find_sector_by_coords(x, (y - 1))
       when :down
-        find_sector_by_coords(@current_sector.x_coord, (@current_sector.y_coord + 1))
+        find_sector_by_coords(x, (y + 1))
       when :left
-        find_sector_by_coords((@current_sector.x_coord - 1), @current_sector.y_coord)
+        find_sector_by_coords((x - 1), y)
       when :right
-        find_sector_by_coords((@current_sector.x_coord + 1), @current_sector.y_coord)
+        find_sector_by_coords((x + 1), y)
       else
         nil
       end
@@ -56,6 +44,23 @@ module SpaceTickets
       @current_sector.draw
     end
   private
+
+    def generate_sectors(window)
+      @sectors = []
+      id = 0
+      x = -1
+      y = -1
+      3.times do
+        3.times do
+          sector = Sector.new(window,x,y,id)
+          @sectors << sector
+          id += 1
+          x += 1
+        end
+        y +=1
+        x = -1
+      end
+    end
 
     def find_sector_by_coords(x_coord,y_coord)
       sector = @sectors.detect {|s| (s.x_coord == x_coord) && (s.y_coord == y_coord)}
