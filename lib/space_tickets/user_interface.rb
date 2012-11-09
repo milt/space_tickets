@@ -5,8 +5,7 @@ module SpaceTickets
       @sector_text = "Sector 4"
       @sector_color = Gosu::Color::YELLOW
 
-      @hud = TexPlay::create_blank_image(window, window.width, window.height)
-      @hud.paint { rect (self.width - (self.width / 4)) - 6, (self.height - (self.height / 4)) - 6,self.width - 6, self.height - 6, :color => :green }
+      @hud = HUD.new(window)
     end
 
     def set_sector(sector)
