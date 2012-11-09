@@ -10,13 +10,10 @@
 
 To get it going in its current state:
 
-$ git clone git://github.com/milt/space_tickets.git
-
-$ cd space_tickets
-
-$ bundle install
-
-$ ruby bin/space_tickets
+    $ git clone git://github.com/milt/space_tickets.git
+    $ cd space_tickets
+    $ bundle install
+    $ ruby bin/space_tickets
 
 == Controls
 
