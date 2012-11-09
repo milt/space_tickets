@@ -4,6 +4,7 @@ module SpaceTickets
     def initialize(window, start_sector)
       super window, TexPlay::EmptyImageStub.new(window.width,window.height), true
       @sector = start_sector
+      @size_factor = 8
       get_size_and_pos
       paint_border
       paint_cell(start_sector)
@@ -20,8 +21,8 @@ module SpaceTickets
     def get_size_and_pos
       width = self.width
       height = self.height
-      @rect_top_left_x = (width - (width / 4)) - 6
-      @rect_top_left_y = (height - (height / 4)) - 6
+      @rect_top_left_x = (width - (width / @size_factor)) - 6
+      @rect_top_left_y = (height - (height / @size_factor)) - 6
       @rect_bot_right_x = width - 6
       @rect_bot_right_y = height - 6
 
