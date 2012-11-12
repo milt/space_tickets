@@ -8,6 +8,7 @@ module SpaceTickets
       @y_clamp = window.height
       @shifted = nil
       @bouncing = false
+      @hit_box = HitBox.new(@x,@y,@x+@image.width,@y+@image.height)
     end
 
     def warp(x, y)
@@ -51,7 +52,7 @@ module SpaceTickets
       
       @x %= @x_clamp
       @y %= @y_clamp
-
+      update_hit_box
       
       @vel_x *= 0.95
       @vel_y *= 0.95
@@ -65,6 +66,12 @@ module SpaceTickets
 
     def draw
       @image.draw_rot(@x, @y, 1, @angle)
+    end
+
+    private
+
+    def update_hit_box
+      @hit_box.update(@x,@y,@x+@image.width,@y+@image.height)
     end
   end
 end
