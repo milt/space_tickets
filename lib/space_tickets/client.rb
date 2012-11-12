@@ -5,6 +5,7 @@ module SpaceTickets
       @image = Gosu::Image.new(window, "media/client.png", false)
       @x = @y = @vel_x = @vel_y = @angle = @vel_rot = 0.0
       @sector = sector
+      @hit_box = HitBox.new(window,@image,@x,@y)
     end
 
     def turn(rot,vel)
@@ -18,6 +19,7 @@ module SpaceTickets
 
     def warp(x, y)
       @x, @y = x, y
+      @hit_box.update(@x,@y,@x+@image.width,@y+@image.height)
     end
     
     # def turn_left
@@ -45,6 +47,7 @@ module SpaceTickets
 
     def draw
       @image.draw_rot(@x, @y, 1, @angle)
+      @hit_box.draw
     end
   end
 end
