@@ -48,6 +48,7 @@ module SpaceTickets
       @x %= @x_clamp
       @y %= @y_clamp
       @hit_box.update
+      @hit_box.check_for_collisions
       
       @vel_x *= 0.95
       @vel_y *= 0.95

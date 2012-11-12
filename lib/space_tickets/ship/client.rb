@@ -1,6 +1,5 @@
 module SpaceTickets
   class Client < Ship
-    #attr_reader :sector
     def initialize(window,sector)
       @image = Gosu::Image.new(window, "media/client.png", false)
       @vel_rot = 0.0
