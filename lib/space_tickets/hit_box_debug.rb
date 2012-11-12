@@ -7,7 +7,7 @@ module SpaceTickets
     end
 
     def draw
-      super @hit_box.x1 - (self.width/2), @hit_box.y1 - (self.height/2), 3
+      super @hit_box.x1, @hit_box.y1, 3
     end
 
     private
