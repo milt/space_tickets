@@ -1,19 +1,13 @@
 module SpaceTickets
-  class Player
+  class Player < Ship
     attr_accessor :shifted
-    attr_reader :x,:y,:image
     def initialize(window)
       @image = Gosu::Image.new(window, "media/player.png", false)
-      @x = @y = @vel_x = @vel_y = @angle = 0.0
       @x_clamp = window.width
       @y_clamp = window.height
       @shifted = nil
       @bouncing = false
-      @hit_box = HitBox.new(window,self)
-    end
-
-    def warp(x, y)
-      @x, @y = x, y
+      super window
     end
     
     def turn_left
@@ -63,11 +57,6 @@ module SpaceTickets
       @vel_x = (0 - @vel_x)*2
       @vel_y = (0 - @vel_y)*2
       @bouncing = true
-    end
-
-    def draw
-      @image.draw_rot(@x, @y, 1, @angle)
-      @hit_box.draw
     end
 
   end

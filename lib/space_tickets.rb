@@ -5,6 +5,7 @@ module SpaceTickets
   require 'yaml'
   $LOAD_PATH.unshift(File.dirname(__FILE__))
   Dir["./lib/space_tickets/*"].each {|file| require file }
+  Dir["./lib/space_tickets/ship/*"].each {|file| require file }
   class SpaceTicketsGame
     def initialize
       window = GameWindow.new
