@@ -23,12 +23,10 @@ module SpaceTickets
       @hit_box_debug.draw
     end
 
-    def check_for_collisions
-      collisions = (@@boxes - [self]).select {|box| (box.sector == self.sector) && ((self.x1 <= box.x2) and (box.x1 <= self.x2)) && ((self.y1 <= box.y2) and (box.y1 <= self.y2))}
-      unless collisions.empty?
-        collisions.each do |box|
-          collision = Collision.new(self,box)
-        end
+    def check_for_collision
+      collision = (@@boxes - [self]).detect {|box| (box.sector == self.sector) && ((self.x1 <= box.x2) and (box.x1 <= self.x2)) && ((self.y1 <= box.y2) and (box.y1 <= self.y2))}
+      unless collision.nil?
+        new_collision = Collision.new(self,collision)
       end
     end
 
