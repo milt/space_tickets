@@ -1,18 +1,15 @@
 module SpaceTickets
   class HitBox
     attr_reader :x_range, :y_range, :x1, :y1, :x2, :y2
-    def initialize(window,image,x,y)
-      x1 = x
-      y1 = y
-      x2 = x+image.width
-      y2 = y+image.height
-      coords_to_ranges(x1,y1,x2,y2)
+    def initialize(window,object)
+      @object = object
+      coords_to_ranges(@object)
 
       @hit_box_debug = HitBoxDebug.new(window,self)
     end
 
-    def update(x1,y1,x2,y2)
-      coords_to_ranges(x1,y1,x2,y2)
+    def update
+      coords_to_ranges(@object)
     end
 
     def draw
@@ -21,11 +18,17 @@ module SpaceTickets
 
     private
 
-    def coords_to_ranges(x1,y1,x2,y2)
-      @x1 = x1.to_i
-      @y1 = y1.to_i
-      @x2 = x2.to_i
-      @y2 = y2.to_i
+    def coords_to_ranges(object)
+
+      @x1 = object.x.to_i
+      @y1 = object.y.to_i
+      @x2 = object.x+object.image.width.to_i
+      @y2 = object.y+object.image.height.to_i
+
+      # @x1 = x1.to_i
+      # @y1 = y1.to_i
+      # @x2 = x2.to_i
+      # @y2 = y2.to_i
 
       #args = method(__method__).parameters.map { |arg| arg[1] }
 

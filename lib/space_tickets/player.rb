@@ -1,6 +1,7 @@
 module SpaceTickets
   class Player
     attr_accessor :shifted
+    attr_reader :x,:y,:image
     def initialize(window)
       @image = Gosu::Image.new(window, "media/player.png", false)
       @x = @y = @vel_x = @vel_y = @angle = 0.0
@@ -8,7 +9,7 @@ module SpaceTickets
       @y_clamp = window.height
       @shifted = nil
       @bouncing = false
-      @hit_box = HitBox.new(window,@image,@x,@y)
+      @hit_box = HitBox.new(window,self)
     end
 
     def warp(x, y)
@@ -52,7 +53,7 @@ module SpaceTickets
       
       @x %= @x_clamp
       @y %= @y_clamp
-      update_hit_box
+      @hit_box.update
       
       @vel_x *= 0.95
       @vel_y *= 0.95
@@ -69,10 +70,5 @@ module SpaceTickets
       @hit_box.draw
     end
 
-    private
-
-    def update_hit_box
-      @hit_box.update(@x,@y,@x+@image.width,@y+@image.height)
-    end
   end
 end

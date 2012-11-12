@@ -1,11 +1,11 @@
 module SpaceTickets
   class Client
-    attr_reader :x, :y, :sector
+    attr_reader :x, :y, :sector, :image
     def initialize(window, sector)
       @image = Gosu::Image.new(window, "media/client.png", false)
       @x = @y = @vel_x = @vel_y = @angle = @vel_rot = 0.0
       @sector = sector
-      @hit_box = HitBox.new(window,@image,@x,@y)
+      @hit_box = HitBox.new(window,self)
     end
 
     def turn(rot,vel)
@@ -19,7 +19,7 @@ module SpaceTickets
 
     def warp(x, y)
       @x, @y = x, y
-      @hit_box.update(@x,@y,@x+@image.width,@y+@image.height)
+      @hit_box.update
     end
     
     # def turn_left
