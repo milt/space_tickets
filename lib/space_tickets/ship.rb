@@ -1,7 +1,7 @@
 module SpaceTickets
   class Ship
-    attr_reader :x,:y,:image
-    def initialize(window)
+    attr_reader :x,:y,:image,:sector
+    def initialize(window,sector)
       @x = @y = @vel_x = @vel_y = @angle = 0.0
       @hit_box = HitBox.new(window,self)
     end

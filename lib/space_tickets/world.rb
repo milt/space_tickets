@@ -6,7 +6,7 @@ module SpaceTickets
 
       @background_image = Gosu::Image.new(window, "media/bk.png", true)
 
-      @player = Player.new(window)
+      @player = Player.new(window, @map.current_sector)
       @player.warp(window.width/2, window.height/2)
 
       @ui = UserInterface.new(window, @map.current_sector)
@@ -20,6 +20,7 @@ module SpaceTickets
         if shift.nil?
           @player.bounce
         end
+        @player.set_sector(@map.current_sector)
         @ui.set_sector(@map.current_sector)
       end
       

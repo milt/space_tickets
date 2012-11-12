@@ -1,13 +1,13 @@
 module SpaceTickets
   class Player < Ship
     attr_accessor :shifted
-    def initialize(window)
+    def initialize(window,sector)
       @image = Gosu::Image.new(window, "media/player.png", false)
       @x_clamp = window.width
       @y_clamp = window.height
       @shifted = nil
       @bouncing = false
-      super window
+      super window,sector
     end
     
     def turn_left
@@ -57,6 +57,10 @@ module SpaceTickets
       @vel_x = (0 - @vel_x)*2
       @vel_y = (0 - @vel_y)*2
       @bouncing = true
+    end
+
+    def set_sector(sector)
+      @sector = sector
     end
 
   end
