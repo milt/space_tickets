@@ -13,6 +13,7 @@ module SpaceTickets
     end
 
     def update
+
       @player.move
 
       unless @player.shifted.nil?
@@ -23,8 +24,10 @@ module SpaceTickets
         @player.set_sector(@map.current_sector)
         @ui.set_sector(@map.current_sector)
       end
-      
+
       @map.update
+
+      
     end
 
     def draw

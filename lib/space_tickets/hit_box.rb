@@ -1,11 +1,7 @@
 module SpaceTickets
   class HitBox
-    attr_reader :x_range, :y_range, :x1, :y1, :x2, :y2, :sector, :ship
+    attr_reader :x_range, :y_range, :x1, :y1, :x2, :y2, :sector, :ship, :collisions
     @@boxes = Hash.new
-
-    def self.boxes
-      @@boxes
-    end
 
     def initialize(window,ship)
       @ship = ship
@@ -13,6 +9,7 @@ module SpaceTickets
 
       @hit_box_debug = HitBoxDebug.new(window,self)
       add_to_sector_hash
+      @collisions = []
     end
 
     def update
@@ -23,10 +20,18 @@ module SpaceTickets
       @hit_box_debug.draw
     end
 
+    def collides_with?(hit_box)
+      if ((self.x1 <= hit_box.x2) and (hit_box.x1 <= self.x2)) && ((self.y1 <= hit_box.y2) and (hit_box.y1 <= self.y2))
+        return true
+      else
+        return false
+      end
+    end
+
     def check_for_collision
-      collision = (@@boxes[@sector] - [self]).detect {|box| ((self.x1 <= box.x2) and (box.x1 <= self.x2)) && ((self.y1 <= box.y2) and (box.y1 <= self.y2))}
-      unless collision.nil?
-        new_collision = Collision.new(self,collision)
+      check = (@@boxes[@sector] - [self]).detect {|box| self.collides_with?(box)}
+      unless check.nil?
+        @collisions << Collision.new(self,check)
       end
     end
 
