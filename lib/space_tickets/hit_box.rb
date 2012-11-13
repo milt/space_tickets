@@ -1,6 +1,7 @@
 module SpaceTickets
   class HitBox
-    attr_reader :x_range, :y_range, :x1, :y1, :x2, :y2, :sector, :ship, :collisions
+    attr_reader :x_range, :y_range, :x1, :y1, :x2, :y2, :sector, :ship
+    attr_accessor :collisions
     @@boxes = Hash.new
 
     def initialize(window,ship)
