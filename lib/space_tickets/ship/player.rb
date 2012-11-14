@@ -1,6 +1,6 @@
 module SpaceTickets
   class Player < Ship
-    #attr_accessor :shifted
+    attr_reader :hit_box
     def initialize(window,sector)
       @image = Gosu::Image.new(window, "media/player.png", false)
       @x_clamp = window.width
@@ -44,8 +44,6 @@ module SpaceTickets
         
         @x %= @x_clamp
         @y %= @y_clamp
-        @hit_box.update
-        @hit_box.check_for_collision
         
         @vel_x *= 0.95
         @vel_y *= 0.95

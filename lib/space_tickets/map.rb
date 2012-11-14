@@ -32,7 +32,6 @@ module SpaceTickets
 
       unless new_sector.nil?
         @current_sector = new_sector
-        #puts "moving to sector #{@current_sector.id}"
       end
     end
 
@@ -43,7 +42,8 @@ module SpaceTickets
     def draw
       @current_sector.draw
     end
-  private
+
+    private
 
     def generate_sectors(window)
       @sectors = []
