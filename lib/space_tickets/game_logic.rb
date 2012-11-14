@@ -8,21 +8,25 @@ module SpaceTickets
 
     def run
       #handle player getting to sector edge:
-      unless @player.shifted.nil?
-        shift = @map.shift(@player.shifted)
-        if shift.nil?
+      unless @player.check_edge.nil?
+        if @map.shift(@player.check_edge).nil?
           @player.bounce
+        else
+          @player.set_sector(@map.current_sector)
+          @ui.set_sector(@map.current_sector)
         end
-        @player.set_sector(@map.current_sector)
-        @ui.set_sector(@map.current_sector)
       end
 
       #handle collisions:
-      unless @player.hit_box.collisions.empty?
-        @player.bounce
-        @player.hit_box.collisions = []
-      end
+      # unless @player.hit_box.collisions.empty?
+      #   @player.bounce
+      #   @player.hit_box.collisions = []
+      # end
     end
+
+    private
+
+
 
   end
 end

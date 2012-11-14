@@ -1,6 +1,6 @@
 module SpaceTickets
   class Player < Ship
-    attr_accessor :shifted
+    #attr_accessor :shifted
     def initialize(window,sector)
       @image = Gosu::Image.new(window, "media/player.png", false)
       @x_clamp = window.width
@@ -23,46 +23,44 @@ module SpaceTickets
       @vel_y += Gosu::offset_y(@angle, 0.5)
     end
     
-    def move
-      @x += @vel_x
-      @y += @vel_y
-
-      if @bouncing == false
-        @shifted = case
-        when @x > @x_clamp
-          :right
-        when @x < 0
-          :left
-        when @y > @y_clamp
-          :down
-        when @y < 0
-          :up
-        else
-          nil
-        end
+    def check_edge
+      case
+      when @x + @vel_x >= @x_clamp
+        :right
+      when @x + @vel_x <= 0
+        :left
+      when @y + @vel_y >= @y_clamp
+        :down
+      when @y + @vel_y <= 0
+        :up
       else
-        @shifted = nil
-        @bouncing = false
+        nil
       end
-      
-      @x %= @x_clamp
-      @y %= @y_clamp
-      @hit_box.update
-      @hit_box.check_for_collision
-      
-      @vel_x *= 0.95
-      @vel_y *= 0.95
+    end
+
+    def move
+        @x += @vel_x
+        @y += @vel_y
+        
+        @x %= @x_clamp
+        @y %= @y_clamp
+        @hit_box.update
+        @hit_box.check_for_collision
+        
+        @vel_x *= 0.95
+        @vel_y *= 0.95
     end
 
     def bounce
       @vel_x = (0 - @vel_x)*2
       @vel_y = (0 - @vel_y)*2
-      @bouncing = true
     end
 
     def set_sector(sector)
       @sector = sector
     end
+
+    private
 
   end
 end
