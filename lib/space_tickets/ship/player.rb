@@ -1,6 +1,5 @@
 module SpaceTickets
   class Player < Ship
-    attr_reader :hit_box
     def initialize(window,sector)
       @image = Gosu::Image.new(window, "media/player.png", false)
       @x_clamp = window.width
@@ -52,10 +51,6 @@ module SpaceTickets
     def bounce
       @vel_x = (0 - @vel_x)*2
       @vel_y = (0 - @vel_y)*2
-    end
-
-    def set_sector(sector)
-      @sector = sector
     end
 
     private

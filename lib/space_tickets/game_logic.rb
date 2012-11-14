@@ -22,8 +22,8 @@ module SpaceTickets
         if shift.nil?
           @player.bounce
         else
-          @player.set_sector(@map.current_sector)
-          
+          @player.sector = @map.current_sector
+
           @ui.sector = @map.current_sector
           @ui.update
         end
