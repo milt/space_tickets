@@ -23,7 +23,9 @@ module SpaceTickets
           @player.bounce
         else
           @player.set_sector(@map.current_sector)
-          @ui.set_sector(@map.current_sector)
+          
+          @ui.sector = @map.current_sector
+          @ui.update
         end
       end
     end

@@ -1,13 +1,15 @@
 module SpaceTickets
   class UserInterface
+    attr_accessor :sector
     def initialize(window, start_sector)
+      @sector = start_sector
       @sector_font = SectorFont.new(window)
-      @hud = HUD.new(window, start_sector)
+      @hud = HUD.new(window, @sector)
     end
 
-    def set_sector(sector)
+    def update
       @sector_font.text = "Sector #{sector.id.to_s}"
-      @hud.sector = sector
+      @hud.sector = @sector
       @hud.update
     end
 
