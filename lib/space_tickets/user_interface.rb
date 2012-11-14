@@ -8,7 +8,7 @@ module SpaceTickets
     end
 
     def update
-      @sector_font.text = "Sector #{sector.id.to_s}"
+      @sector_font.text = "Sector #{@sector.id.to_s}"
       @hud.sector = @sector
       @hud.update
     end
